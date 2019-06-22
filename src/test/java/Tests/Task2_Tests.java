@@ -1,5 +1,6 @@
 package Tests;
 
+import config.TestConfig;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class Task2_Tests {
+public class Task2_Tests extends TestConfig {
 
     // MARK: - Properties
 

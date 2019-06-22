@@ -1,4 +1,5 @@
 package Tests;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,8 +27,6 @@ public class Task1_Tests {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
         driver.get("http://the-internet.herokuapp.com/");
-//        driver.get("https://facebook.com");
-//          driver.get("https://google.com");
     }
 
     @After
@@ -40,6 +38,7 @@ public class Task1_Tests {
 
     @Test
     public void addAndDeleteElementsTest() throws InterruptedException {
+        Thread.sleep(5000);
         WebElement addRemoveTask = driver.findElement(By.xpath("//a[contains(@href, '/add_remove_elements')]"));
         addRemoveTask.isDisplayed();
         addRemoveTask.click();
