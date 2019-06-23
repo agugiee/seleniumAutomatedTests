@@ -1,13 +1,13 @@
 package Tests;
 
+import Pages.HomePage;
+import Pages.Task3_Page;
 import config.TestConfig;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -19,6 +19,9 @@ public class Task3_Tests extends TestConfig {
 
     WebDriver driver;
     Actions actions;
+
+    private HomePage homePage;
+    private Task3_Page taskFloatingMenuPage;
 
     // MARK: - Lifecycle
 
@@ -41,25 +44,16 @@ public class Task3_Tests extends TestConfig {
 
     @Test
     public void checkMenuIsStillDisplayed() throws InterruptedException {
-        WebElement floatingMenuTask = driver.findElement(By.xpath("//a[contains(@href, '/floating_menu')]"));
-        floatingMenuTask.isDisplayed();
-        floatingMenuTask.click();
-
-        WebElement menuHeader = driver.findElement(By.xpath("//h3[text()='Floating Menu']"));
-        Thread.sleep(1500);
-        Assert.assertTrue(menuHeader.isDisplayed());
-
-        WebElement newsButton = driver.findElement(By.xpath("//a[@href='#news']"));
-        Assert.assertTrue(newsButton.isDisplayed());
+        homePage.openFloatingMenuTask();
+        taskFloatingMenuPage.isFloatingMenuHeaderDisplayed();
+        taskFloatingMenuPage.isNewsButtonDisplayed();
 
         Thread.sleep(1500);
 
-
-        WebElement paragraph = driver.findElement(By.xpath("//p[3]"));
-        actions.moveToElement(paragraph).click().perform();
+        actions.moveToElement(taskFloatingMenuPage.getParagraphElement()).click().perform();
 
         Thread.sleep(1500);
 
-        Assert.assertTrue(newsButton.isDisplayed());
+        Assert.assertTrue(taskFloatingMenuPage.isNewsButtonDisplayed());
     }
 }

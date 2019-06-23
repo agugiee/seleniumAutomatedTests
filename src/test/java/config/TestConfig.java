@@ -12,8 +12,8 @@ import static config.WebDriverSingleton.quit;
 
 public class TestConfig {
 
-    private Actions actions;
-    private WebDriver driver;
+    public Actions actions;
+    public WebDriver driver;
 
     @Before
     public void setUp() {
