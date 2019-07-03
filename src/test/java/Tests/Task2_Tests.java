@@ -20,7 +20,7 @@ public class Task2_Tests extends TestConfig {
     // MARK: - Test cases
 
     @Test
-    public void checkboxesTest() throws InterruptedException {
+    public void checkboxesBasedSettingsTest() throws InterruptedException {
         homePage.openSecondTask();
         taskTwoPage.isCheckboxHeaderDisplayed();
         Assert.assertTrue(taskTwoPage.isChecboxFirstDisplayed());

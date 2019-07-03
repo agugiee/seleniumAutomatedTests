@@ -18,7 +18,7 @@ public class Task1_Page extends BasePage {
     @FindBy(xpath = "//h3[text()='Add/Remove Elements']")
     private WebElement taskOneHeader;
 
-    public boolean checkTaskOneHeaderisDisplayed() throws InterruptedException {
+    public boolean checkTaskOneHeaderIsDisplayed() throws InterruptedException {
         Thread.sleep(5000);
         return taskOneHeader.isDisplayed();
     }
@@ -38,7 +38,7 @@ public class Task1_Page extends BasePage {
     public WebElement getAddButton() {
         return addButton;
     }
-    
+
     public WebElement getDeleteButton() {
         return deleteButton;
     }
