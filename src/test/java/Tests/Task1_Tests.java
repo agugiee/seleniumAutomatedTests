@@ -23,8 +23,10 @@ public class Task1_Tests extends TestConfig {
     public void addAndDeleteElementsTest() throws InterruptedException {
         homePage.openTaskFirst();
         taskOnePage.checkTaskOneHeaderisDisplayed();
-        WebElement addButton = taskOnePage.clickAddButton();
-        WebElement deleteButton = taskOnePage.clickDeleteButton();
+        taskOnePage.clickAddButton();
+        WebElement addButton = taskOnePage.getAddButton();
+        taskOnePage.clickDeleteButton();
+        WebElement deleteButton = taskOnePage.getDeleteButton();
         Assert.assertTrue(addButton.isDisplayed());
         Assert.assertFalse(!deleteButton.isDisplayed());
     }

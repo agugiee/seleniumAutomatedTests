@@ -23,17 +23,23 @@ public class Task1_Page extends BasePage {
         return taskOneHeader.isDisplayed();
     }
 
-    public WebElement clickAddButton() throws InterruptedException {
+    public void clickAddButton() throws InterruptedException {
         addButton.isDisplayed();
         addButton.click();
         Thread.sleep(1500);
-        return addButton;
     }
 
-    public WebElement clickDeleteButton() throws InterruptedException {
+    public void clickDeleteButton() throws InterruptedException {
         deleteButton.isDisplayed();
         deleteButton.click();
         Thread.sleep(1500);
+    }
+
+    public WebElement getAddButton() {
+        return addButton;
+    }
+    
+    public WebElement getDeleteButton() {
         return deleteButton;
     }
 }
