@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, '/checkboxes')]")
     private WebElement taskSecondHeader;
 
-    @FindBy(xpath = "//a[contains(@href, '/add_remove_elements']")
+    @FindBy(xpath = "//a[contains(@href, '/add_remove_elements')]")
     private WebElement taskOneHeader;
 
     public Task1_Page openTaskFirst() throws InterruptedException {

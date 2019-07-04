@@ -5,17 +5,14 @@ import Pages.Task2_Page;
 import config.TestConfig;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Task2_Tests extends TestConfig {
 
     // MARK: - Properties
 
-    WebDriver driver;
-
-    private HomePage homePage;
-    private Task2_Page taskTwoPage;
+    HomePage homePage = new HomePage();
+    Task2_Page taskTwoPage = new Task2_Page();
 
     // MARK: - Test cases
 
