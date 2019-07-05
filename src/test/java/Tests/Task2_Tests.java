@@ -1,92 +1,48 @@
 package Tests;
 
-import org.junit.After;
+import Pages.HomePage;
+import Pages.Task2_Page;
+import config.TestConfig;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
-public class Task2_Tests {
+public class Task2_Tests extends TestConfig {
 
     // MARK: - Properties
 
-    WebDriver driver;
-
-    // MARK: - Lifecycle
-
-    @Before
-    public void setUp() {
-        System.setProperty("Webdriver ChromeDriver", "C:\\Users\\Aga\\Desktop\\FirstTestWeb\\src\\test\\java\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-        driver.get("http://the-internet.herokuapp.com/");
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+    HomePage homePage = new HomePage();
+    Task2_Page taskTwoPage = new Task2_Page();
 
     // MARK: - Test cases
 
     @Test
-    public void checkboxesTest() throws InterruptedException {
-        this.tapCheckboxTask();
-        this.isCheckboxTaskHeaderDisplayed();
+    public void checkboxesBasedSettingsTest() throws InterruptedException {
+        homePage.openSecondTask();
+        taskTwoPage.isCheckboxHeaderDisplayed();
+        Assert.assertTrue(taskTwoPage.isChecboxFirstDisplayed());
+        Assert.assertTrue(taskTwoPage.isChecboxSecondDisplayed());
 
-        WebElement checkbox_first = driver.findElement(By.xpath("//form[@id='checkboxes']/input[@type='checkbox'][1]"));
-        WebElement checkbox_second = driver.findElement(By.xpath("//form[@id='checkboxes']/input[@type='checkbox'][2]"));
-
-        checkbox_first.isDisplayed();
-        checkbox_second.isDisplayed();
-
-        Assert.assertFalse(this.isCheckboxSelected(checkbox_first));
-        Assert.assertTrue(this.isCheckboxSelected(checkbox_second));
+        Assert.assertFalse(taskTwoPage.isCheckboxSelected(taskTwoPage.getCheckbox_first()));
+        Assert.assertTrue(taskTwoPage.isCheckboxSelected(taskTwoPage.getCheckbox_second()));
     }
 
     @Test
     public void switchBothCheckboxesOffTest() throws InterruptedException {
-        this.tapCheckboxTask();
-        this.isCheckboxTaskHeaderDisplayed();
+        homePage.openSecondTask();
+        taskTwoPage.isCheckboxHeaderDisplayed();
 
-        WebElement checkbox_first = driver.findElement(By.xpath("//form[@id='checkboxes']/input[@type='checkbox'][1]"));
-        WebElement checkbox_second = driver.findElement(By.xpath("//form[@id='checkboxes']/input[@type='checkbox'][2]"));
-
-        checkbox_first.isDisplayed();
-        checkbox_second.isDisplayed();
+        Assert.assertTrue(taskTwoPage.isChecboxFirstDisplayed());
+        Assert.assertTrue(taskTwoPage.isChecboxSecondDisplayed());
 
         Thread.sleep(1500);
 
+        WebElement checkbox_second = taskTwoPage.getCheckbox_second();
         checkbox_second.click();
 
         Thread.sleep(1500);
 
-        Assert.assertFalse(this.isCheckboxSelected(checkbox_first));
-        Assert.assertFalse(this.isCheckboxSelected(checkbox_second));
-    }
-
-    // MARK: - Private methods
-
-    private void tapCheckboxTask() {
-        WebElement checkboxesTask = driver.findElement(By.xpath("//a[contains(@href, '/checkboxes')]"));
-        checkboxesTask.isDisplayed();
-        checkboxesTask.click();
-    }
-
-    private void isCheckboxTaskHeaderDisplayed() throws InterruptedException {
-        Thread.sleep(5000);
-        WebElement checkboxesTaskHeader = driver.findElement(By.xpath("//h3[text()='Checkboxes']"));
-        Assert.assertTrue(checkboxesTaskHeader.isDisplayed());
-    }
-
-    private boolean isCheckboxSelected(WebElement element) {
-        boolean valueOfCheckbox = element.isSelected();
-        return valueOfCheckbox;
+        Assert.assertFalse(taskTwoPage.isCheckboxSelected(taskTwoPage.getCheckbox_first()));
+        Assert.assertFalse(taskTwoPage.isCheckboxSelected(taskTwoPage.getCheckbox_second()));
     }
 }
